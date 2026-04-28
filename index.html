@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="VidhyaDhan is a free awareness platform connecting Indian students to free education portals, government schemes, and scholarships.">
+<meta property="og:title" content="VidhyaDhan — Free Education for Every Indian">
+<meta property="og:description" content="Discover free Indian and global education platforms, government schemes, and 100+ scholarships in one place.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#050505">
+<title>VidhyaDhan — Free Education for Every Indian</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* ─── HOME-SPECIFIC ─── */
+
+/* Hero */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center;
+  padding: 120px 60px 80px; position: relative; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 100% 80% at 50% -10%, rgba(201,168,76,0.12) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(26,58,107,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 20% 70%, rgba(26,107,74,0.08) 0%, transparent 60%);
+}
+.hero-ring {
+  position: absolute; border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.06);
+  animation: spin 40s linear infinite;
+}
+.hero-ring:nth-child(1) { width: 500px; height: 500px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+.hero-ring:nth-child(2) { width: 800px; height: 800px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-duration: 60s; animation-direction: reverse; }
+.hero-ring:nth-child(3) { width: 1100px; height: 1100px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-duration: 80s; }
+@keyframes spin { from { rotate: 0deg; } to { rotate: 360deg; } }
+
+.hero-eyebrow {
+  font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; font-weight: 600;
+  color: var(--gold); letter-spacing: 5px; text-transform: uppercase;
+  margin-bottom: 24px; position: relative; z-index: 1;
+  opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: '──'; color: var(--gold-dark); margin: 0 12px;
+}
+.hero-title {
+  font-size: clamp(2.8rem, 7vw, 6.5rem);
+  line-height: 1.05; margin-bottom: 16px;
+  position: relative; z-index: 1;
+  opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
+}
+.hero-title .line-gold { color: var(--gold); }
+.hero-title .line-thin { font-weight: 400; font-style: italic; font-family: 'Cormorant Garamond', serif; color: var(--white-dim); }
+.hero-sub {
+  font-size: clamp(1.1rem, 2vw, 1.4rem); color: var(--white-dim);
+  max-width: 680px; line-height: 1.8; font-weight: 300;
+  margin-bottom: 48px; position: relative; z-index: 1;
+  opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
+}
+.hero-cta {
+  display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+  position: relative; z-index: 1;
+  opacity: 0; animation: fadeUp 0.8s 0.8s forwards;
+}
+.hero-scroll {
+  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  color: var(--white-faint); font-family: 'Rajdhani', sans-serif;
+  font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase;
+  animation: bounce 2s infinite;
+  z-index: 1;
+}
+.hero-scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, var(--gold), transparent); }
+@keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+
+/* SDG Strip */
+.sdg-strip {
+  background: var(--black-2); border-top: 1px solid rgba(201,168,76,0.1); border-bottom: 1px solid rgba(201,168,76,0.1);
+  padding: 28px 60px;
+}
+.sdg-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 12px; }
+.sdg-label { font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-right: 12px; }
+.sdg-pill {
+  padding: 6px 16px; border-radius: 20px; font-family: 'Rajdhani', sans-serif;
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 1.5px; border: 1px solid;
+}
+
+/* Stats row */
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(201,168,76,0.1); }
+.stats-row-wrap { background: var(--black-3); }
+.stat-cell { background: var(--black-3); padding: 48px 32px; text-align: center; position: relative; overflow: hidden; }
+.stat-cell::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 40px; height: 2px; background: var(--gold); opacity: 0.5; }
+
+/* Problem section */
+.problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.problem-text h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); margin-bottom: 24px; }
+.problem-text p { font-size: 1.1rem; color: var(--white-dim); line-height: 1.9; margin-bottom: 20px; }
+.problem-points { list-style: none; margin-top: 28px; }
+.problem-points li {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 1.05rem; color: var(--white-dim); line-height: 1.7;
+}
+.problem-points li .bullet { color: var(--gold); font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+.problem-visual {
+  background: var(--black-3); border: 1px solid rgba(201,168,76,0.1);
+  border-radius: 6px; padding: 40px; position: relative;
+}
+.awareness-bar { margin-bottom: 24px; }
+.awareness-bar-label { display: flex; justify-content: space-between; font-family: 'Rajdhani', sans-serif; font-size: 0.82rem; color: var(--white-dim); letter-spacing: 1px; margin-bottom: 8px; }
+.awareness-bar-track { height: 8px; background: var(--black-5); border-radius: 4px; overflow: hidden; }
+.awareness-bar-fill { height: 100%; border-radius: 4px; width: 0; transition: width 1.5s ease; }
+.awareness-bar-fill.gold { background: linear-gradient(to right, var(--gold-dark), var(--gold)); }
+.awareness-bar-fill.emerald { background: linear-gradient(to right, var(--emerald), var(--emerald-l)); }
+.awareness-bar-fill.sapphire { background: linear-gradient(to right, var(--sapphire), var(--sapphire-l)); }
+.awareness-bar-fill.crimson { background: linear-gradient(to right, var(--crimson), var(--crimson-l)); }
+
+/* Featured platforms */
+.platforms-preview { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.platform-card { position: relative; }
+.platform-icon { font-size: 2.2rem; margin-bottom: 16px; }
+.platform-card h3 { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 1px; color: var(--white); margin-bottom: 8px; }
+.platform-card p { font-size: 0.95rem; color: var(--white-faint); line-height: 1.7; }
+.platform-card .card-link { display: inline-flex; align-items: center; gap: 6px; color: var(--gold); font-family: 'Rajdhani', sans-serif; font-size: 0.78rem; letter-spacing: 1.5px; text-decoration: none; text-transform: uppercase; margin-top: 16px; transition: gap 0.3s; }
+.platform-card .card-link:hover { gap: 10px; }
+
+/* Impact timeline */
+.timeline { position: relative; padding-left: 32px; }
+.timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, transparent, var(--gold-dark), transparent); }
+.timeline-item { position: relative; margin-bottom: 40px; }
+.timeline-item::before { content: ''; position: absolute; left: -36px; top: 8px; width: 9px; height: 9px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 12px rgba(201,168,76,0.5); }
+.timeline-year { font-family: 'Rajdhani', sans-serif; font-size: 0.78rem; font-weight: 600; color: var(--gold); letter-spacing: 2px; margin-bottom: 6px; }
+.timeline-item h4 { font-size: 1.05rem; color: var(--white); margin-bottom: 6px; font-family: 'Rajdhani', sans-serif; font-weight: 600; letter-spacing: 1px; }
+.timeline-item p { font-size: 0.95rem; color: var(--white-faint); line-height: 1.7; }
+
+/* CTA Section */
+.cta-section {
+  text-align: center; padding: 100px 60px;
+  background: linear-gradient(135deg, var(--black-2) 0%, var(--black-3) 50%, var(--black-2) 100%);
+  border-top: 1px solid rgba(201,168,76,0.1); border-bottom: 1px solid rgba(201,168,76,0.1);
+  position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,168,76,0.06) 0%, transparent 70%);
+}
+.cta-section h2 { font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 20px; position: relative; z-index: 1; }
+.cta-section p { font-size: 1.2rem; color: var(--white-dim); max-width: 600px; margin: 0 auto 40px; font-weight: 300; position: relative; z-index: 1; }
+.cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+
+@media (max-width: 900px) {
+  .problem-grid { grid-template-columns: 1fr; gap: 40px; }
+  .platforms-preview { grid-template-columns: 1fr; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .hero { padding: 100px 24px 80px; }
+  .sdg-strip { padding: 20px 24px; }
+  .cta-section { padding: 72px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav>
+  <a href="index.html" class="nav-logo">Vidhya<span>Dhan</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><a href="platforms.html">Platforms</a></li>
+    <li><a href="schemes.html">Schemes</a></li>
+    <li><a href="scholarships.html">Scholarships</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="scholarships.html" class="nav-cta">Apply Now</a></li>
+  </ul>
+  <div class="nav-toggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero" style="max-width:none; padding-left:60px; padding-right:60px;">
+  <div class="hero-bg"></div>
+  <div class="hero-ring"></div>
+  <div class="hero-ring"></div>
+  <div class="hero-ring"></div>
+
+  <p class="hero-eyebrow">SDG Goal 4 · Quality Education · India</p>
+  <h1 class="hero-title">
+    <span class="line-gold">Knowledge</span><br>
+    <span class="line-thin">is the greatest</span><br>
+    <span>Wealth of All</span>
+  </h1>
+  <p class="hero-sub">
+    Millions of Indians remain unaware of free education platforms, government schemes, and scholarship portals.
+    VidhyaDhan bridges this gap — one learner at a time.
+  </p>
+  <div class="hero-cta">
+    <a href="platforms.html" class="btn btn-gold">Explore Platforms ›</a>
+    <a href="schemes.html" class="btn btn-outline">Govt. Schemes</a>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- ══════════ SDG STRIP ══════════ -->
+<div class="sdg-strip">
+  <div class="sdg-inner">
+    <span class="sdg-label">Aligned with</span>
+    <span class="sdg-pill" style="color:#e8a024;border-color:rgba(232,160,36,0.3);background:rgba(232,160,36,0.06)">SDG 4.1 · Free Education</span>
+    <span class="sdg-pill" style="color:#27ae60;border-color:rgba(39,174,96,0.3);background:rgba(39,174,96,0.06)">SDG 4.3 · Higher Access</span>
+    <span class="sdg-pill" style="color:#2e86c1;border-color:rgba(46,134,193,0.3);background:rgba(46,134,193,0.06)">SDG 4.4 · Skills</span>
+    <span class="sdg-pill" style="color:#9b59b6;border-color:rgba(155,89,182,0.3);background:rgba(155,89,182,0.06)">SDG 10 · Reduce Inequality</span>
+  </div>
+</div>
+
+<!-- ══════════ STATS ROW ══════════ -->
+<div class="stats-row-wrap">
+  <div class="stats-row">
+    <div class="stat-cell reveal">
+      <div class="stat-num" data-count="3" data-suffix=" Cr+" data-dec="0">0</div>
+      <div class="stat-label">SWAYAM Learners Enrolled</div>
+    </div>
+    <div class="stat-cell reveal" data-delay="100">
+      <div class="stat-num" data-count="1.5" data-suffix=" Cr+" data-dec="1">0</div>
+      <div class="stat-label">NSP Scholarships Annually</div>
+    </div>
+    <div class="stat-cell reveal" data-delay="200">
+      <div class="stat-num" data-count="77.7" data-suffix="%" data-dec="1">0</div>
+      <div class="stat-label">India Literacy Rate 2023</div>
+    </div>
+    <div class="stat-cell reveal" data-delay="300">
+      <div class="stat-num" data-count="5000" data-suffix="+" data-dec="0">0</div>
+      <div class="stat-label">Free Courses on SWAYAM</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ PROBLEM STATEMENT ══════════ -->
+<section>
+  <div class="problem-grid">
+    <div class="problem-text reveal">
+      <span class="section-eyebrow">The Problem</span>
+      <h2>The <span class="gold" style="color:var(--gold)">Awareness Gap</span> that Costs Futures</h2>
+      <p>India has one of the world's largest ecosystems of free digital learning and government-backed education schemes — yet millions never benefit from them, simply because they don't know these resources exist.</p>
+      <ul class="problem-points">
+        <li><span class="bullet">◆</span>Only <strong>1 in 5</strong> rural students knows about SWAYAM or DIKSHA</li>
+        <li><span class="bullet">◆</span>Only <strong>26%</strong> of eligible scholarship beneficiaries actually apply</li>
+        <li><span class="bullet">◆</span>Over <strong>3 crore children</strong> remain out of school (UNESCO, 2023)</li>
+        <li><span class="bullet">◆</span>Students miss scholarship deadlines — no one informed them in time</li>
+        <li><span class="bullet">◆</span>Language barriers and lack of digital literacy widen the divide</li>
+      </ul>
+    </div>
+    <div class="problem-visual reveal" data-delay="150">
+      <h4 style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:28px">Awareness vs. Eligibility</h4>
+      <div class="awareness-bar">
+        <div class="awareness-bar-label"><span>SWAYAM Awareness</span><span>20%</span></div>
+        <div class="awareness-bar-track"><div class="awareness-bar-fill gold" data-width="20"></div></div>
+      </div>
+      <div class="awareness-bar">
+        <div class="awareness-bar-label"><span>Scholarship Applications</span><span>26%</span></div>
+        <div class="awareness-bar-track"><div class="awareness-bar-fill emerald" data-width="26"></div></div>
+      </div>
+      <div class="awareness-bar">
+        <div class="awareness-bar-label"><span>Digital Platform Usage</span><span>34%</span></div>
+        <div class="awareness-bar-track"><div class="awareness-bar-fill sapphire" data-width="34"></div></div>
+      </div>
+      <div class="awareness-bar">
+        <div class="awareness-bar-label"><span>Eligible but Enrolled</span><span>41%</span></div>
+        <div class="awareness-bar-track"><div class="awareness-bar-fill crimson" data-width="41"></div></div>
+      </div>
+      <p style="font-size:0.85rem;color:var(--white-faint);margin-top:20px;font-style:italic">Based on NSSO surveys and government education reports.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ DATA VISUALIZATION ══════════ -->
+<section style="padding-top: 0;">
+  <div class="section-header reveal">
+    <span class="section-eyebrow">Data Insights</span>
+    <h2 class="section-title">The <span class="gold">Education Divide</span> in India</h2>
+    <p class="section-subtitle">Official NSO data highlights the deep regional disparities in literacy. Our mission is to bridge this gap through universal awareness.</p>
+  </div>
+  
+  <div class="grid-2" style="gap: 40px;">
+    <!-- Top States -->
+    <div class="card reveal" style="padding: 40px 32px;">
+      <h3 style="font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; color: var(--emerald-l); margin-bottom: 24px; display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 1.5rem;">📈</span> Top Performing States
+      </h3>
+      <div class="awareness-bar">
+        <div class="awareness-bar-label"><span>Kerala</span><span>96.2%</span></div>
+        <div class="awareness-bar-track"><div class="awareness-bar-fill emerald" data-width="96.2"></div></div>
+      </div>
+      <div class="awareness-bar">
+        <div class="awareness-bar-label"><span>Delhi</span><span>88.7%</span></div>
+        <div class="awareness-bar-track"><div class="awareness-bar-fill emerald" data-width="88.7"></div></div>
+      </div>
+      <div class="awareness-bar">
+        <div class="awareness-bar-label"><span>Uttarakhand</span><span>87.6%</span></div>
+        <div class="awareness-bar-track"><div class="awareness-bar-fill emerald" data-width="87.6"></div></div>
+      </div>
+    </div>
+    
+    <!-- Bottom States -->
+    <div class="card reveal" data-delay="150" style="padding: 40px 32px;">
+      <h3 style="font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; color: #E74C3C; margin-bottom: 24px; display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 1.5rem;">📉</span> Highest Need States
+      </h3>
+      <div class="awareness-bar">
+        <div class="awareness-bar-label"><span>Andhra Pradesh</span><span>66.4%</span></div>
+        <div class="awareness-bar-track"><div class="awareness-bar-fill" style="background: #E74C3C;" data-width="66.4"></div></div>
+      </div>
+      <div class="awareness-bar">
+        <div class="awareness-bar-label"><span>Rajasthan</span><span>69.7%</span></div>
+        <div class="awareness-bar-track"><div class="awareness-bar-fill" style="background: #E74C3C;" data-width="69.7"></div></div>
+      </div>
+      <div class="awareness-bar">
+        <div class="awareness-bar-label"><span>Bihar</span><span>70.9%</span></div>
+        <div class="awareness-bar-track"><div class="awareness-bar-fill" style="background: #E74C3C;" data-width="70.9"></div></div>
+      </div>
+    </div>
+  </div>
+  <p style="text-align: center; font-size: 0.85rem; color: var(--white-faint); margin-top: 24px; font-style: italic;">Data Source: National Statistical Office (NSO) - Report on Education in India</p>
+</section>
+
+<!-- ══════════ FEATURED PLATFORMS ══════════ -->
+<section style="background:var(--black-2);max-width:none;padding-left:0;padding-right:0;">
+  <div style="max-width:1280px;margin:0 auto;padding:96px 60px;">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Free Learning</span>
+      <h2 class="section-title">Top <span class="gold">Indian Platforms</span> You Should Know</h2>
+      <p class="section-subtitle">Government-backed platforms offering thousands of courses — completely free, in multiple languages.</p>
+      <div class="gold-divider"><span class="gold-divider-icon">◆</span></div>
+    </div>
+    <div class="platforms-preview">
+      <div class="card platform-card reveal">
+        <div class="platform-icon">🎓</div>
+        <span class="badge badge-gold" style="margin-bottom:12px">IIT · IIM · IGNOU</span>
+        <h3>SWAYAM</h3>
+        <p>5,000+ free courses from India's premier institutions. School to postgraduate level. Earn UGC-recognized certificates.</p>
+        <a href="platforms.html" class="card-link">Explore SWAYAM →</a>
+      </div>
+      <div class="card platform-card reveal" data-delay="100">
+        <div class="platform-icon">📚</div>
+        <span class="badge badge-emerald" style="margin-bottom:12px">K-12 · 30+ Languages</span>
+        <h3>DIKSHA</h3>
+        <p>Digital learning for school students aligned to NCERT curriculum. Available in 30+ Indian languages with offline access.</p>
+        <a href="platforms.html" class="card-link">Explore DIKSHA →</a>
+      </div>
+      <div class="card platform-card reveal" data-delay="200">
+        <div class="platform-icon">📡</div>
+        <span class="badge badge-sapphire" style="margin-bottom:12px">TV · Radio · Podcast</span>
+        <h3>PM e-VIDYA</h3>
+        <p>Multi-mode education via 34 DTH TV channels, radio & podcasts. Reaches 25 crore+ students without internet dependency.</p>
+        <a href="platforms.html" class="card-link">Explore PM e-VIDYA →</a>
+      </div>
+      <div class="card platform-card reveal">
+        <div class="platform-icon">🔬</div>
+        <span class="badge badge-gold" style="margin-bottom:12px">IITs · Engineering</span>
+        <h3>NPTEL</h3>
+        <p>Free engineering, science, and management courses from IITs with optional paid certifications. World-class content.</p>
+        <a href="platforms.html" class="card-link">Explore NPTEL →</a>
+      </div>
+      <div class="card platform-card reveal" data-delay="100">
+        <div class="platform-icon">📖</div>
+        <span class="badge badge-emerald" style="margin-bottom:12px">9 Crore+ Resources</span>
+        <h3>National Digital Library</h3>
+        <p>India's largest digital library with 9+ crore resources — books, journals, theses, and research papers. Free access for all.</p>
+        <a href="platforms.html" class="card-link">Explore NDL →</a>
+      </div>
+      <div class="card platform-card reveal" data-delay="200">
+        <div class="platform-icon">🌐</div>
+        <span class="badge badge-sapphire" style="margin-bottom:12px">PG Level · 70+ Subjects</span>
+        <h3>e-PG Pathshala</h3>
+        <p>Postgraduate-level e-content across 70+ disciplines. Developed by top university professors, curated by UGC.</p>
+        <a href="platforms.html" class="card-link">Explore e-PG Pathshala →</a>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px">
+      <a href="platforms.html" class="btn btn-gold">View All Platforms ›</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TIMELINE ══════════ -->
+<section>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
+    <div class="reveal">
+      <span class="section-eyebrow">India's Education Journey</span>
+      <h2 style="font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:40px">Milestones that <span style="color:var(--gold)">Shaped Learning</span></h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">1947</div>
+          <h4>Independence & 12% Literacy</h4>
+          <p>India starts its journey with a 12% literacy rate. Education for all becomes a foundational mission.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2009</div>
+          <h4>Right to Education Act</h4>
+          <p>Free and compulsory education becomes a fundamental right for all children aged 6–14 years.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2017</div>
+          <h4>SWAYAM Platform Launch</h4>
+          <p>Government launches SWAYAM with thousands of free online courses from premier institutions.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2020</div>
+          <h4>National Education Policy</h4>
+          <p>NEP 2020 — transformative policy to modernize education, promote multilingualism and digital learning.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2023</div>
+          <h4>77.7% Literacy Achieved</h4>
+          <p>India crosses 77.7% literacy — a testament to decades of persistent educational reforms and investment.</p>
+        </div>
+      </div>
+    </div>
+    <div class="reveal" data-delay="150">
+      <span class="section-eyebrow">Our Mission</span>
+      <h2 style="font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:24px">Why <span style="color:var(--gold)">VidhyaDhan</span> Exists</h2>
+      <p style="font-size:1.1rem;color:var(--white-dim);line-height:1.9;margin-bottom:20px;">
+        VidhyaDhan means <em>"Wealth of Knowledge"</em> — because we believe education is the most valuable resource any person can possess.
+      </p>
+      <p style="font-size:1.1rem;color:var(--white-dim);line-height:1.9;margin-bottom:28px;">
+        This platform is a centralized awareness hub — not another education portal. We don't create courses; we make sure every eligible student knows exactly which free resources they can access, which schemes they qualify for, and which scholarships have open deadlines.
+      </p>
+      <div class="grid-2" style="gap:16px">
+        <div class="card" style="padding:20px;text-align:center">
+          <div style="font-size:2rem;margin-bottom:8px">🏛️</div>
+          <div style="font-family:'Rajdhani',sans-serif;font-size:0.82rem;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase">Govt. Platforms</div>
+          <div style="font-size:1.8rem;font-weight:700;color:var(--white);font-family:'Cinzel',serif">8+</div>
+        </div>
+        <div class="card" style="padding:20px;text-align:center">
+          <div style="font-size:2rem;margin-bottom:8px">🌍</div>
+          <div style="font-family:'Rajdhani',sans-serif;font-size:0.82rem;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase">Global Platforms</div>
+          <div style="font-size:1.8rem;font-weight:700;color:var(--white);font-family:'Cinzel',serif">7+</div>
+        </div>
+        <div class="card" style="padding:20px;text-align:center">
+          <div style="font-size:2rem;margin-bottom:8px">📜</div>
+          <div style="font-family:'Rajdhani',sans-serif;font-size:0.82rem;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase">Scholarships</div>
+          <div style="font-size:1.8rem;font-weight:700;color:var(--white);font-family:'Cinzel',serif">100+</div>
+        </div>
+        <div class="card" style="padding:20px;text-align:center">
+          <div style="font-size:2rem;margin-bottom:8px">🤝</div>
+          <div style="font-family:'Rajdhani',sans-serif;font-size:0.82rem;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase">Govt. Schemes</div>
+          <div style="font-size:1.8rem;font-weight:700;color:var(--white);font-family:'Cinzel',serif">20+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CTA ══════════ -->
+<div class="cta-section">
+  <h2>Don't Let Anyone Miss Their <span style="color:var(--gold)">Free Education</span></h2>
+  <p>Share VidhyaDhan with students, parents, and communities who deserve to know their opportunities.</p>
+  <div class="cta-btns">
+    <a href="platforms.html" class="btn btn-gold">Browse Free Platforms</a>
+    <a href="scholarships.html" class="btn btn-outline">Find Scholarships</a>
+  </div>
+</div>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="footer-logo">Vidhya<span>Dhan</span></span>
+      <p class="footer-desc">A centralized awareness platform dedicated to bridging the education knowledge gap in India. Free information, for every learner.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Explore</h5>
+      <ul>
+        <li><a href="platforms.html">Indian Platforms</a></li>
+        <li><a href="platforms.html">Global Platforms</a></li>
+        <li><a href="schemes.html">Govt. Schemes</a></li>
+        <li><a href="scholarships.html">Scholarships</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Schemes</h5>
+      <ul>
+        <li><a href="schemes.html">School Education</a></li>
+        <li><a href="schemes.html">Higher Education</a></li>
+        <li><a href="schemes.html">Skill Development</a></li>
+        <li><a href="schemes.html">Girl Child Education</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Quick Links</h5>
+      <ul>
+        <li><a href="https://scholarships.gov.in" target="_blank">NSP Portal</a></li>
+        <li><a href="https://swayam.gov.in" target="_blank">SWAYAM</a></li>
+        <li><a href="https://diksha.gov.in" target="_blank">DIKSHA</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 VidhyaDhan · Empowering India Through Education Awareness</p>
+    <div class="footer-sdg">
+      <span class="sdg-badge">SDG 4</span>
+      <span class="sdg-badge">SDG 10</span>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+  // Animate bars when visible
+  const barObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.awareness-bar-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+        barObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  const pv = document.querySelector('.problem-visual');
+  if (pv) barObserver.observe(pv);
+</script>
+</body>
+</html>

@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="VidhyaDhan is a free awareness platform connecting Indian students to free education portals, government schemes, and scholarships.">
+<meta property="og:title" content="VidhyaDhan — Free Education for Every Indian">
+<meta property="og:description" content="Discover free Indian and global education platforms, government schemes, and 100+ scholarships in one place.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#050505">
+<title>Scholarships — VidhyaDhan</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.filter-bar {
+  display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 36px;
+}
+.filter-btn {
+  padding: 8px 20px; background: var(--black-4);
+  border: 1px solid rgba(201,168,76,0.12); border-radius: 20px;
+  color: var(--white-dim); font-family: 'Rajdhani', sans-serif;
+  font-size: 0.78rem; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; cursor: pointer; transition: all 0.3s;
+}
+.filter-btn:hover, .filter-btn.active {
+  background: rgba(201,168,76,0.1); color: var(--gold);
+  border-color: rgba(201,168,76,0.3);
+}
+
+.scholarship-card {
+  background: var(--black-3); border: 1px solid rgba(201,168,76,0.08);
+  border-radius: 4px; padding: 28px 32px;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 20px; align-items: start; margin-bottom: 12px;
+  transition: all 0.3s; position: relative;
+}
+.scholarship-card:hover { border-color: rgba(201,168,76,0.28); transform: translateX(4px); }
+.scholarship-card::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  border-radius: 4px 0 0 4px; opacity: 0; transition: opacity 0.3s;
+}
+.scholarship-card:hover::before { opacity: 1; }
+.sc-gold::before { background: var(--gold); }
+.sc-emerald::before { background: var(--emerald-l); }
+.sc-sapphire::before { background: var(--sapphire-l); }
+.sc-crimson::before { background: #E74C3C; }
+
+.sc-title { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 8px; letter-spacing: 0.5px; }
+.sc-desc { font-size: 0.97rem; color: var(--white-faint); line-height: 1.7; margin-bottom: 14px; }
+.sc-meta { display: flex; gap: 10px; flex-wrap: wrap; }
+.sc-right { text-align: right; flex-shrink: 0; }
+.sc-amount { font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 700; color: var(--gold); }
+.sc-amount-label { font-family: 'Rajdhani', sans-serif; font-size: 0.72rem; color: var(--white-faint); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 4px; }
+.sc-deadline { font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; color: #E74C3C; letter-spacing: 1px; margin-top: 10px; }
+
+.apply-banner {
+  background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, rgba(201,168,76,0.03) 100%);
+  border: 1px solid rgba(201,168,76,0.2); border-radius: 6px;
+  padding: 40px 48px; text-align: center; margin: 64px 0 0;
+}
+.apply-banner h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); margin-bottom: 16px; }
+.apply-banner p { font-size: 1.1rem; color: var(--white-dim); margin-bottom: 28px; max-width: 560px; margin-left: auto; margin-right: auto; line-height: 1.8; }
+
+.steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; margin: 48px 0; }
+.step { text-align: center; padding: 24px 16px; }
+.step-num { width: 44px; height: 44px; border-radius: 50%; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3); color: var(--gold); font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+.step h4 { font-family: 'Rajdhani', sans-serif; font-size: 0.9rem; font-weight: 700; letter-spacing: 1px; color: var(--white); margin-bottom: 8px; }
+.step p { font-size: 0.9rem; color: var(--white-faint); line-height: 1.7; }
+.step-connector { display: none; }
+
+@media (max-width: 768px) {
+  .scholarship-card { grid-template-columns: 1fr; }
+  .sc-right { text-align: left; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .apply-banner { padding: 28px 20px; }
+}
+@media (max-width: 480px) {
+  .steps { grid-template-columns: 1fr; }
+}
+
+.hidden { display: none !important; }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">Vidhya<span>Dhan</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><a href="platforms.html">Platforms</a></li>
+    <li><a href="schemes.html">Schemes</a></li>
+    <li><a href="scholarships.html" class="active">Scholarships</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="scholarships.html" class="nav-cta">Apply Now</a></li>
+  </ul>
+  <div class="nav-toggle"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-lines"></div>
+  <span class="section-eyebrow" style="position:relative;z-index:1">Financial Aid Guide</span>
+  <h1 class="page-hero-title"><span class="gold">Scholarships</span> for Every Student</h1>
+  <p class="page-hero-sub">From ₹1,000 to ₹2 lakh annually — find the scholarship you qualify for and never miss a deadline again.</p>
+</div>
+
+<div style="background: rgba(201,168,76,0.05); border-bottom: 1px solid rgba(201,168,76,0.15); padding: 12px 60px; text-align: center; font-size: 0.9rem; color: var(--white-dim);">
+  <strong>⚠️ Disclaimer:</strong> Information sourced from official government portals. Always verify details on the original site before applying. <a href="about.html" style="color:var(--gold)">Report outdated info</a>.
+</div>
+
+<section>
+
+  <!-- Stats -->
+  <div class="grid-4 reveal" style="margin-bottom:64px">
+    <div class="card" style="text-align:center;padding:28px">
+      <div class="stat-num" data-count="100" data-suffix="+">0</div>
+      <div class="stat-label">Total Scholarships on NSP</div>
+    </div>
+    <div class="card" style="text-align:center;padding:28px">
+      <div class="stat-num" data-count="1.5" data-suffix=" Cr" data-dec="1">0</div>
+      <div class="stat-label">Students Benefit Annually</div>
+    </div>
+    <div class="card" style="text-align:center;padding:28px">
+      <div class="stat-num" data-count="26" data-suffix="%">0</div>
+      <div class="stat-label">Eligible Students Actually Apply</div>
+    </div>
+    <div class="card" style="text-align:center;padding:28px">
+      <div class="stat-num" data-count="2" data-suffix=" Lakh">0</div>
+      <div class="stat-label">Maximum Annual Award</div>
+    </div>
+  </div>
+
+  <!-- Search + Filter -->
+  <div class="reveal">
+    <div class="search-wrap">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search scholarships by name, category…">
+      <span class="search-icon">🔍</span>
+    </div>
+    <div class="filter-bar" id="filterBar">
+      <button class="filter-btn active" data-filter="all">All Scholarships</button>
+      <button class="filter-btn" data-filter="merit">Merit Based</button>
+      <button class="filter-btn" data-filter="need">Need Based</button>
+      <button class="filter-btn" data-filter="girls">For Girls</button>
+      <button class="filter-btn" data-filter="sc-st">SC / ST / OBC</button>
+      <button class="filter-btn" data-filter="technical">Technical</button>
+      <button class="filter-btn" data-filter="central">Central Govt.</button>
+    </div>
+  </div>
+
+  <!-- Eligibility Checker -->
+  <div class="reveal" style="margin-bottom: 48px;">
+    <div class="card" style="background: linear-gradient(135deg, var(--black-3) 0%, var(--black-4) 100%);">
+      <div style="margin-bottom: 24px;">
+        <h3 style="font-family: 'Rajdhani', sans-serif; font-size: 1.4rem; color: var(--gold); margin-bottom: 8px;">Find Your Scholarship Matches</h3>
+        <p style="color: var(--white-dim); font-size: 0.95rem;">Answer 3 quick questions to see which scholarships you are eligible for.</p>
+      </div>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 24px;">
+        <div>
+          <label style="display:block; font-family:'Rajdhani', sans-serif; font-size:0.85rem; color:var(--white-faint); margin-bottom:8px; text-transform:uppercase; letter-spacing:1px;">Category</label>
+          <select id="checker-category" style="width:100%; padding:12px; background:var(--black-2); border:1px solid rgba(201,168,76,0.2); color:var(--white); border-radius:4px; font-family:'Rajdhani', sans-serif; outline:none;">
+            <option value="all">Any Category</option>
+            <option value="sc-st">SC / ST</option>
+            <option value="obc">OBC</option>
+            <option value="general">General / Minority</option>
+          </select>
+        </div>
+        <div>
+          <label style="display:block; font-family:'Rajdhani', sans-serif; font-size:0.85rem; color:var(--white-faint); margin-bottom:8px; text-transform:uppercase; letter-spacing:1px;">Education Level</label>
+          <select id="checker-level" style="width:100%; padding:12px; background:var(--black-2); border:1px solid rgba(201,168,76,0.2); color:var(--white); border-radius:4px; font-family:'Rajdhani', sans-serif; outline:none;">
+            <option value="all">Any Level</option>
+            <option value="school">School (Class 9-12)</option>
+            <option value="ug">Undergraduate (UG) / Technical</option>
+            <option value="pg">Postgraduate (PG)</option>
+          </select>
+        </div>
+        <div>
+          <label style="display:block; font-family:'Rajdhani', sans-serif; font-size:0.85rem; color:var(--white-faint); margin-bottom:8px; text-transform:uppercase; letter-spacing:1px;">Gender</label>
+          <select id="checker-gender" style="width:100%; padding:12px; background:var(--black-2); border:1px solid rgba(201,168,76,0.2); color:var(--white); border-radius:4px; font-family:'Rajdhani', sans-serif; outline:none;">
+            <option value="all">Any</option>
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+          </select>
+        </div>
+      </div>
+      <button id="btn-check-eligibility" class="btn btn-gold" style="width: 100%; justify-content: center;">Check Eligibility ›</button>
+      
+      <div id="checker-results" style="display: none; margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.05);">
+        <p style="color:var(--emerald-l); font-family:'Rajdhani', sans-serif; font-weight:600; margin-bottom:16px; font-size: 1.1rem;" id="checker-msg"></p>
+        <div id="checker-list" style="display: flex; flex-direction: column; gap: 12px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scholarship Cards -->
+  <div id="scholarshipList">
+
+    <div class="scholarship-card sc-gold reveal" data-categories="merit central need">
+      <div>
+        <div class="sc-title">National Scholarship Portal (NSP) — Umbrella Portal</div>
+        <div class="sc-desc">Single-window portal for 100+ central and state scholarships. Pre-matric, post-matric, and merit-based categories. Apply once and be considered for multiple schemes.</div>
+        <div class="sc-meta">
+          <span class="badge badge-gold">Central Govt.</span>
+          <span class="badge badge-emerald">100+ Schemes</span>
+          <span class="badge badge-sapphire">All Levels</span>
+        </div>
+      </div>
+      <div class="sc-right">
+        <div class="sc-amount">₹1K–2L</div>
+        <div class="sc-amount-label">Per Year</div>
+        <a href="https://scholarships.gov.in" target="_blank" class="btn btn-gold" style="padding:8px 18px;font-size:0.72rem;margin-top:14px;display:inline-flex">Apply →</a>
+      </div>
+    </div>
+
+    <div class="scholarship-card sc-gold reveal" data-categories="merit central">
+      <div>
+        <div class="sc-title">Central Sector Scheme of Scholarships (CSSS)</div>
+        <div class="sc-desc">For students who scored in the top 20 percentile in Class 12 board exams. Renewable annually for undergraduate and postgraduate studies in recognized colleges.</div>
+        <div class="sc-meta">
+          <span class="badge badge-gold">Merit Based</span>
+          <span class="badge badge-sapphire">UG & PG Level</span>
+          <span class="badge badge-emerald">Central Govt.</span>
+        </div>
+      </div>
+      <div class="sc-right">
+        <div class="sc-amount">₹20,000</div>
+        <div class="sc-amount-label">Per Year</div>
+        <div class="sc-deadline">⏰ Apply via NSP Portal</div>
+      </div>
+    </div>
+
+    <div class="scholarship-card sc-emerald reveal" data-categories="need merit central">
+      <div>
+        <div class="sc-title">National Means-cum-Merit Scholarship (NMMS)</div>
+        <div class="sc-desc">For Class 8 students from economically weaker sections scoring above 55% in exams. Covers Classes 9–12 to prevent dropout at secondary stage. State-administered exam for selection.</div>
+        <div class="sc-meta">
+          <span class="badge badge-emerald">Class 9–12</span>
+          <span class="badge badge-gold">EWS Families</span>
+          <span class="badge badge-sapphire">State Exam</span>
+        </div>
+      </div>
+      <div class="sc-right">
+        <div class="sc-amount">₹12,000</div>
+        <div class="sc-amount-label">Per Year</div>
+        <div class="sc-deadline">⏰ Check state notifications</div>
+      </div>
+    </div>
+
+    <div class="scholarship-card sc-sapphire reveal" data-categories="girls technical central">
+      <div>
+        <div class="sc-title">AICTE Pragati Scholarship for Girls</div>
+        <div class="sc-desc">Financial aid for girl students in first or second year of AICTE-approved technical degree/diploma programs. Only one per family. Covers tuition and other expenses.</div>
+        <div class="sc-meta">
+          <span class="badge badge-sapphire">Girls Only</span>
+          <span class="badge badge-gold">Technical Education</span>
+          <span class="badge badge-crimson">AICTE Approved</span>
+        </div>
+      </div>
+      <div class="sc-right">
+        <div class="sc-amount">₹50,000</div>
+        <div class="sc-amount-label">Per Year</div>
+        <div class="sc-deadline">⏰ Apply via AICTE portal</div>
+      </div>
+    </div>
+
+    <div class="scholarship-card sc-crimson reveal" data-categories="sc-st need central">
+      <div>
+        <div class="sc-title">Post-Matric Scholarship for SC/ST Students</div>
+        <div class="sc-desc">For students from Scheduled Castes and Scheduled Tribes pursuing education after Class 10. Covers tuition, maintenance, books, and special allowances. State-administered with central funding.</div>
+        <div class="sc-meta">
+          <span class="badge badge-crimson">SC / ST</span>
+          <span class="badge badge-emerald">Post Class 10</span>
+          <span class="badge badge-gold">All Courses</span>
+        </div>
+      </div>
+      <div class="sc-right">
+        <div class="sc-amount">Variable</div>
+        <div class="sc-amount-label">By State & Course</div>
+        <div class="sc-deadline">⏰ Apply via NSP Portal</div>
+      </div>
+    </div>
+
+    <div class="scholarship-card sc-crimson reveal" data-categories="sc-st need central">
+      <div>
+        <div class="sc-title">Post-Matric Scholarship for OBC Students</div>
+        <div class="sc-desc">For Other Backward Class students pursuing post-matriculation education. Covers maintenance allowance and compulsory non-refundable fees. Annual family income ceiling applies.</div>
+        <div class="sc-meta">
+          <span class="badge badge-crimson">OBC Students</span>
+          <span class="badge badge-emerald">Post Matric</span>
+          <span class="badge badge-sapphire">Income Limit</span>
+        </div>
+      </div>
+      <div class="sc-right">
+        <div class="sc-amount">Variable</div>
+        <div class="sc-amount-label">By Category</div>
+        <div class="sc-deadline">⏰ Apply via NSP Portal</div>
+      </div>
+    </div>
+
+    <div class="scholarship-card sc-gold reveal" data-categories="need central">
+      <div>
+        <div class="sc-title">Merit-cum-Means Scholarship for Minorities</div>
+        <div class="sc-desc">For students from minority communities (Muslim, Christian, Sikh, Buddhist, Jain, Parsi) pursuing professional and technical courses. 30% seats reserved for girl students within the scheme.</div>
+        <div class="sc-meta">
+          <span class="badge badge-gold">Minority Communities</span>
+          <span class="badge badge-sapphire">Professional Courses</span>
+          <span class="badge badge-emerald">Girls Priority</span>
+        </div>
+      </div>
+      <div class="sc-right">
+        <div class="sc-amount">₹30,000</div>
+        <div class="sc-amount-label">Course Fee/Year</div>
+        <div class="sc-deadline">⏰ Apply via NSP Portal</div>
+      </div>
+    </div>
+
+    <div class="scholarship-card sc-sapphire reveal" data-categories="technical girls merit">
+      <div>
+        <div class="sc-title">AICTE Saksham Scholarship (Specially-Abled)</div>
+        <div class="sc-desc">For differently-abled students enrolled in AICTE-approved technical diploma and degree programs. Supports tuition and special needs accommodation expenses.</div>
+        <div class="sc-meta">
+          <span class="badge badge-sapphire">Specially-Abled</span>
+          <span class="badge badge-gold">AICTE Programs</span>
+        </div>
+      </div>
+      <div class="sc-right">
+        <div class="sc-amount">₹50,000</div>
+        <div class="sc-amount-label">Per Year</div>
+        <div class="sc-deadline">⏰ Apply via AICTE Portal</div>
+      </div>
+    </div>
+
+    <div class="scholarship-card sc-emerald reveal" data-categories="merit central need">
+      <div>
+        <div class="sc-title">Inspire Scholarship — DST</div>
+        <div class="sc-desc">Department of Science & Technology scheme for students pursuing Natural and Basic Sciences at BSc and MSc levels. Encourages science as a career. Top 1% in Class 12.</div>
+        <div class="sc-meta">
+          <span class="badge badge-emerald">Science Students</span>
+          <span class="badge badge-gold">DST Scheme</span>
+          <span class="badge badge-sapphire">Top 1% Merit</span>
+        </div>
+      </div>
+      <div class="sc-right">
+        <div class="sc-amount">₹80,000</div>
+        <div class="sc-amount-label">Per Year</div>
+        <div class="sc-deadline">⏰ Apply at online-inspire.gov.in</div>
+      </div>
+    </div>
+
+    <div class="scholarship-card sc-gold reveal" data-categories="need girls sc-st">
+      <div>
+        <div class="sc-title">Pre-Matric Scholarship for SC/ST/OBC (Class 9–10)</div>
+        <div class="sc-desc">For students in Classes 9 and 10 from SC, ST, and OBC backgrounds. Provides maintenance allowance and ad hoc grants to prevent dropout at critical transition stage.</div>
+        <div class="sc-meta">
+          <span class="badge badge-crimson">SC / ST / OBC</span>
+          <span class="badge badge-gold">Class 9–10</span>
+        </div>
+      </div>
+      <div class="sc-right">
+        <div class="sc-amount">₹3,500+</div>
+        <div class="sc-amount-label">Per Year</div>
+        <div class="sc-deadline">⏰ Apply via NSP Portal</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- How to Apply Steps -->
+  <div class="reveal" style="margin-top:80px">
+    <div class="section-header">
+      <span class="section-eyebrow">Step-by-Step Guide</span>
+      <h2 class="section-title">How to <span class="gold">Apply</span> for Scholarships</h2>
+      <p class="section-subtitle">The NSP portal is your gateway to most central government scholarships. Follow these steps.</p>
+    </div>
+    <div class="steps">
+      <div class="step card">
+        <div class="step-num">1</div>
+        <h4>Register on NSP</h4>
+        <p>Visit scholarships.gov.in and create a new student account with your Aadhaar number and mobile.</p>
+      </div>
+      <div class="step card">
+        <div class="step-num">2</div>
+        <h4>Fill Your Profile</h4>
+        <p>Enter educational, family income, and community details accurately. Upload required documents.</p>
+      </div>
+      <div class="step card">
+        <div class="step-num">3</div>
+        <h4>Select Schemes</h4>
+        <p>The portal shows all schemes you qualify for. Apply to all eligible ones — no limit on applications.</p>
+      </div>
+      <div class="step card">
+        <div class="step-num">4</div>
+        <h4>Track & Renew</h4>
+        <p>Track status on NSP dashboard. Most scholarships require annual renewal — mark your calendar.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Apply Banner -->
+  <div class="apply-banner reveal">
+    <h2>Ready to <span style="color:var(--gold)">Apply?</span></h2>
+    <p>All major central government scholarships can be applied to through a single portal. Don't wait — deadlines close every year between August and November.</p>
+    <a href="https://scholarships.gov.in" target="_blank" class="btn btn-gold">Open NSP Portal →</a>
+  </div>
+
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="footer-logo">Vidhya<span>Dhan</span></span>
+      <p class="footer-desc">A centralized awareness platform dedicated to bridging the education knowledge gap in India.</p>
+    </div>
+    <div class="footer-col"><h5>Explore</h5><ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="platforms.html">Platforms</a></li>
+      <li><a href="schemes.html">Schemes</a></li>
+      <li><a href="scholarships.html">Scholarships</a></li>
+    </ul></div>
+    <div class="footer-col"><h5>Scholarships</h5><ul>
+      <li><a href="#">Merit Based</a></li>
+      <li><a href="#">SC/ST/OBC</a></li>
+      <li><a href="#">For Girls</a></li>
+      <li><a href="#">Technical</a></li>
+    </ul></div>
+    <div class="footer-col"><h5>Quick Links</h5><ul>
+      <li><a href="https://scholarships.gov.in" target="_blank">NSP Portal</a></li>
+      <li><a href="https://aicte-india.org" target="_blank">AICTE Scholarships</a></li>
+      <li><a href="https://online-inspire.gov.in" target="_blank">INSPIRE DST</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 VidhyaDhan · Knowledge is the greatest wealth</p>
+    <div class="footer-sdg"><span class="sdg-badge">SDG 4</span><span class="sdg-badge">SDG 10</span></div>
+  </div>
+</footer>
+<script src="main.js"></script>
+<script>
+// Filter logic
+document.querySelectorAll('#filterBar .filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#filterBar .filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.scholarship-card').forEach(card => {
+      const cats = card.dataset.categories || '';
+      card.classList.toggle('hidden', filter !== 'all' && !cats.includes(filter));
+    });
+  });
+});
+
+// Eligibility Checker Logic
+document.getElementById('btn-check-eligibility').addEventListener('click', () => {
+  const cat = document.getElementById('checker-category').value;
+  const level = document.getElementById('checker-level').value;
+  const gender = document.getElementById('checker-gender').value;
+  
+  const resultsDiv = document.getElementById('checker-results');
+  const msg = document.getElementById('checker-msg');
+  const list = document.getElementById('checker-list');
+  
+  list.innerHTML = '';
+  let matchCount = 0;
+  
+  document.querySelectorAll('.scholarship-card').forEach(card => {
+    const cats = card.dataset.categories || '';
+    const title = card.querySelector('.sc-title').textContent;
+    const amount = card.querySelector('.sc-amount').textContent;
+    let isMatch = true;
+    
+    // Simple logic based on data-categories and text content
+    if (cat === 'sc-st' && !cats.includes('sc-st') && !cats.includes('central')) isMatch = false;
+    if (cat === 'obc' && !title.includes('OBC') && !cats.includes('central')) isMatch = false;
+    if (gender === 'male' && cats.includes('girls')) isMatch = false;
+    if (gender === 'female' && !cats.includes('girls') && !cats.includes('central')) isMatch = true; // females can apply to general too
+    if (level === 'school' && cats.includes('ug') && !cats.includes('merit')) isMatch = false;
+    if (level === 'ug' && title.includes('Class 9')) isMatch = false;
+    
+    // Always show NSP as it's umbrella
+    if (title.includes('Umbrella')) isMatch = true;
+    
+    if (isMatch) {
+      matchCount++;
+      const item = document.createElement('div');
+      item.style.padding = '12px 16px';
+      item.style.background = 'rgba(201,168,76,0.05)';
+      item.style.border = '1px solid rgba(201,168,76,0.2)';
+      item.style.borderRadius = '4px';
+      item.innerHTML = `<strong style="color:var(--white);">${title}</strong> <span style="float:right; color:var(--gold);">${amount}</span>`;
+      list.appendChild(item);
+    }
+  });
+  
+  msg.textContent = `Found ${matchCount} potential scholarships for your profile!`;
+  resultsDiv.style.display = 'block';
+});
+</script>
+</body>
+</html>

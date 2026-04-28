@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="VidhyaDhan is a free awareness platform connecting Indian students to free education portals, government schemes, and scholarships.">
+<meta property="og:title" content="VidhyaDhan — Free Education for Every Indian">
+<meta property="og:description" content="Discover free Indian and global education platforms, government schemes, and 100+ scholarships in one place.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#050505">
+<title>About — VidhyaDhan</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* ─── ABOUT-SPECIFIC ─── */
+.mission-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  margin-bottom: 100px;
+}
+.mission-text h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 24px; }
+.mission-text p { font-size: 1.1rem; color: var(--white-dim); line-height: 1.9; margin-bottom: 18px; }
+.mission-pull {
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem); color: var(--gold);
+  font-style: italic; font-family: 'Cormorant Garamond', serif; font-weight: 300;
+  border-left: 2px solid var(--gold); padding-left: 24px;
+  line-height: 1.6; margin: 32px 0;
+}
+.mission-visual {
+  background: var(--black-3); border: 1px solid rgba(201,168,76,0.1);
+  border-radius: 6px; padding: 40px; position: relative; overflow: hidden;
+}
+.mission-visual::after {
+  content: '◆'; position: absolute; right: 24px; top: 24px;
+  font-size: 6rem; color: rgba(201,168,76,0.04); line-height: 1;
+}
+.mv-row { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.mv-row:last-child { border-bottom: none; }
+.mv-label { font-family: 'Rajdhani', sans-serif; font-size: 0.82rem; color: var(--white-faint); letter-spacing: 1.5px; text-transform: uppercase; }
+.mv-value { font-family: 'Cinzel', serif; font-size: 1.4rem; font-weight: 700; color: var(--gold); }
+
+/* SDG Section */
+.sdg-section { background: var(--black-2); padding: 96px 0; margin: 0; }
+.sdg-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.sdg-card {
+  padding: 32px 28px; border-radius: 4px; position: relative; overflow: hidden;
+  transition: transform 0.3s;
+}
+.sdg-card:hover { transform: translateY(-4px); }
+.sdg-num { font-family: 'Cinzel', serif; font-size: 3.5rem; font-weight: 900; line-height: 1; margin-bottom: 12px; opacity: 0.15; position: absolute; top: 16px; right: 20px; }
+.sdg-card h3 { font-family: 'Rajdhani', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 12px; position: relative; z-index: 1; }
+.sdg-card p { font-size: 0.95rem; color: var(--white-faint); line-height: 1.7; position: relative; z-index: 1; }
+
+/* Values */
+.values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.value-card { text-align: center; padding: 40px 28px; }
+.value-icon { font-size: 2.8rem; margin-bottom: 20px; display: block; }
+.value-card h3 { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 1px; color: var(--white); margin-bottom: 12px; }
+.value-card p { font-size: 0.97rem; color: var(--white-faint); line-height: 1.8; }
+
+/* FAQ */
+.faq-wrap { max-width: 780px; margin: 0 auto; }
+
+/* Contact */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.contact-form input, .contact-form textarea, .contact-form select {
+  width: 100%; padding: 14px 18px; margin-bottom: 14px;
+  background: var(--black-4); border: 1px solid rgba(201,168,76,0.15);
+  color: var(--white); font-family: 'Cormorant Garamond', serif; font-size: 1rem;
+  border-radius: 3px; outline: none; transition: border-color 0.3s;
+}
+.contact-form input:focus, .contact-form textarea:focus { border-color: var(--gold); }
+.contact-form textarea { height: 120px; resize: vertical; }
+.contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--white-faint); }
+.contact-info-item { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 28px; }
+.ci-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
+.ci-label { font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+.ci-value { font-size: 1.05rem; color: var(--white-dim); line-height: 1.6; }
+
+@media (max-width: 900px) {
+  .mission-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .sdg-cards { grid-template-columns: 1fr 1fr; }
+  .values-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 580px) {
+  .sdg-cards { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">Vidhya<span>Dhan</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><a href="platforms.html">Platforms</a></li>
+    <li><a href="schemes.html">Schemes</a></li>
+    <li><a href="scholarships.html">Scholarships</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="scholarships.html" class="nav-cta">Apply Now</a></li>
+  </ul>
+  <div class="nav-toggle"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-lines"></div>
+  <span class="section-eyebrow" style="position:relative;z-index:1">Our Story</span>
+  <h1 class="page-hero-title">About <span class="gold">VidhyaDhan</span></h1>
+  <p class="page-hero-sub">We are not another education platform. We are a bridge — connecting every deserving Indian student to the free resources that are rightfully theirs.</p>
+</div>
+
+<section id="mission">
+  <div class="mission-grid">
+    <div class="mission-text reveal">
+      <span class="section-eyebrow">Our Mission</span>
+      <h2>Awareness is the <span style="color:var(--gold)">First Step</span> to Education</h2>
+      <p>India has built one of the world's most ambitious educational ecosystems — SWAYAM, DIKSHA, NPTEL, the National Scholarship Portal, PM KVY, and dozens more. Yet millions of students who need these resources the most have never heard of them.</p>
+      <div class="mission-pull">"The greatest injustice is not the absence of opportunity — it is the unawareness of it."</div>
+      <p>VidhyaDhan (विद्याधन) — meaning <em>Wealth of Knowledge</em> — was created to solve this single, devastating problem. We aggregate information about every major free education platform, government scheme, and scholarship portal in one place, presented in a clear, accessible, and beautiful format.</p>
+      <p>This is a <strong style="color:var(--white)">zero-cost, zero-profit awareness initiative</strong> aligned with India's commitment to SDG Goal 4: Quality Education for All.</p>
+    </div>
+    <div class="mission-visual reveal" data-delay="150">
+      <h4 style="font-family:'Rajdhani',sans-serif;font-size:0.78rem;letter-spacing:2.5px;color:var(--gold);text-transform:uppercase;margin-bottom:24px">Impact by Numbers</h4>
+      <div class="mv-row">
+        <span class="mv-label">Free Platforms Catalogued</span>
+        <span class="mv-value">15+</span>
+      </div>
+      <div class="mv-row">
+        <span class="mv-label">Government Schemes Listed</span>
+        <span class="mv-value">20+</span>
+      </div>
+      <div class="mv-row">
+        <span class="mv-label">Scholarships Documented</span>
+        <span class="mv-value">100+</span>
+      </div>
+      <div class="mv-row">
+        <span class="mv-label">Languages Platforms Serve</span>
+        <span class="mv-value">30+</span>
+      </div>
+      <div class="mv-row">
+        <span class="mv-label">SWAYAM Learners Enrolled</span>
+        <span class="mv-value">3 Cr+</span>
+      </div>
+      <div class="mv-row">
+        <span class="mv-label">Annual NSP Scholarship Beneficiaries</span>
+        <span class="mv-value">1.5 Cr</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Values -->
+  <div class="section-header reveal">
+    <span class="section-eyebrow">What We Stand For</span>
+    <h2 class="section-title">Our <span class="gold">Core Values</span></h2>
+  </div>
+  <div class="values-grid">
+    <div class="card value-card reveal">
+      <span class="value-icon">🕯️</span>
+      <h3>Awareness First</h3>
+      <p>Before access, there must be awareness. We believe that simply knowing a resource exists can change the trajectory of a student's life.</p>
+    </div>
+    <div class="card value-card reveal" data-delay="100">
+      <span class="value-icon">⚖️</span>
+      <h3>Radical Inclusivity</h3>
+      <p>Our platform is for every Indian — rural, urban, rural, first-generation learner, or seasoned student. Education has no prerequisites.</p>
+    </div>
+    <div class="card value-card reveal" data-delay="200">
+      <span class="value-icon">🌱</span>
+      <h3>Truth & Accuracy</h3>
+      <p>Every platform, scheme, and scholarship listed here is real, government-verified, and currently active. We update information regularly.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SDG SECTION -->
+<div class="sdg-section" id="sdg">
+  <div style="max-width:1280px;margin:0 auto;padding:0 60px;">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">United Nations Goals</span>
+      <h2 class="section-title">SDG <span class="gold">Alignment</span></h2>
+      <p class="section-subtitle">VidhyaDhan directly contributes to multiple Sustainable Development Goals set by the United Nations for 2030.</p>
+      <div class="gold-divider"><span class="gold-divider-icon">◆</span></div>
+    </div>
+    <div class="sdg-cards">
+      <div class="card sdg-card reveal" style="border-color:rgba(232,160,36,0.2)">
+        <div class="sdg-num" style="color:#e8a024">4.1</div>
+        <span class="badge badge-gold" style="margin-bottom:14px">SDG 4.1</span>
+        <h3 style="color:#e8c97a">Free & Equitable Education</h3>
+        <p>Ensure all girls and boys complete free, equitable, and quality primary and secondary education leading to relevant learning outcomes.</p>
+      </div>
+      <div class="card sdg-card reveal" data-delay="80" style="border-color:rgba(39,174,96,0.2)">
+        <div class="sdg-num" style="color:#27ae60">4.3</div>
+        <span class="badge badge-emerald" style="margin-bottom:14px">SDG 4.3</span>
+        <h3 style="color:#27ae60">Access to Higher Education</h3>
+        <p>Ensure equal access for all women and men to affordable and quality technical, vocational, and higher education including university.</p>
+      </div>
+      <div class="card sdg-card reveal" data-delay="160" style="border-color:rgba(46,134,193,0.2)">
+        <div class="sdg-num" style="color:#2e86c1">4.4</div>
+        <span class="badge badge-sapphire" style="margin-bottom:14px">SDG 4.4</span>
+        <h3 style="color:#2e86c1">Skills for Employment</h3>
+        <p>Substantially increase the number of youth and adults who have relevant technical and vocational skills for employment and entrepreneurship.</p>
+      </div>
+      <div class="card sdg-card reveal" style="border-color:rgba(155,89,182,0.2)">
+        <div class="sdg-num" style="color:#9b59b6">4.5</div>
+        <span class="badge" style="background:rgba(155,89,182,0.1);color:#9b59b6;border-color:rgba(155,89,182,0.25);margin-bottom:14px">SDG 4.5</span>
+        <h3 style="color:#9b59b6">Gender Equality in Education</h3>
+        <p>Eliminate gender disparities in education and ensure equal access to all levels of education for the vulnerable, including persons with disabilities.</p>
+      </div>
+      <div class="card sdg-card reveal" data-delay="80" style="border-color:rgba(231,76,60,0.2)">
+        <div class="sdg-num" style="color:#e74c3c">4.6</div>
+        <span class="badge badge-crimson" style="margin-bottom:14px">SDG 4.6</span>
+        <h3 style="color:#e74c3c">Literacy & Numeracy</h3>
+        <p>Ensure that all youth and a substantial proportion of adults, both men and women, achieve literacy and numeracy by 2030.</p>
+      </div>
+      <div class="card sdg-card reveal" data-delay="160" style="border-color:rgba(201,168,76,0.2)">
+        <div class="sdg-num" style="color:var(--gold)">10</div>
+        <span class="badge badge-gold" style="margin-bottom:14px">SDG 10</span>
+        <h3 style="color:var(--gold)">Reduced Inequalities</h3>
+        <p>Reduce inequality within and among countries by bridging the digital divide and ensuring equal access to educational resources regardless of background.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section>
+  <div class="section-header reveal">
+    <span class="section-eyebrow">Questions & Answers</span>
+    <h2 class="section-title">Frequently Asked <span class="gold">Questions</span></h2>
+  </div>
+  <div class="faq-wrap">
+    <div class="accordion-item reveal">
+      <div class="accordion-header">
+        <h4>Is VidhyaDhan affiliated with the Government of India?</h4>
+        <span class="accordion-icon">+</span>
+      </div>
+      <div class="accordion-body"><div class="accordion-body-inner">
+        VidhyaDhan is an independent awareness initiative and is not officially affiliated with the Government of India. However, all information listed on this platform is sourced directly from official government portals (swayam.gov.in, diksha.gov.in, scholarships.gov.in, etc.) and is updated regularly for accuracy.
+      </div></div>
+    </div>
+    <div class="accordion-item reveal">
+      <div class="accordion-header">
+        <h4>Are the courses and scholarships really free?</h4>
+        <span class="accordion-icon">+</span>
+      </div>
+      <div class="accordion-body"><div class="accordion-body-inner">
+        Yes. Every platform and scheme listed on VidhyaDhan offers free access to learning content. Some platforms (like SWAYAM and NPTEL) offer optional paid certification exams, but the course content itself is completely free. Scholarships listed are real government schemes with verified disbursements.
+      </div></div>
+    </div>
+    <div class="accordion-item reveal">
+      <div class="accordion-header">
+        <h4>Do I need a smartphone or computer to access these platforms?</h4>
+        <span class="accordion-icon">+</span>
+      </div>
+      <div class="accordion-body"><div class="accordion-body-inner">
+        Not necessarily. PM e-VIDYA offers education through 34 DTH TV channels and radio — no internet or device required. DIKSHA has an offline mode. For students with smartphones, most platforms have dedicated apps with low-data or offline modes. We recommend DIKSHA and SWAYAM apps for mobile learners.
+      </div></div>
+    </div>
+    <div class="accordion-item reveal">
+      <div class="accordion-header">
+        <h4>How do I apply for multiple scholarships at once?</h4>
+        <span class="accordion-icon">+</span>
+      </div>
+      <div class="accordion-body"><div class="accordion-body-inner">
+        The National Scholarship Portal (scholarships.gov.in) is a single-window system. After registering once with your Aadhaar, you can apply to all eligible central government scholarships simultaneously. The system automatically matches you with schemes based on your profile. There is no limit on how many schemes you can apply to.
+      </div></div>
+    </div>
+    <div class="accordion-item reveal">
+      <div class="accordion-header">
+        <h4>What documents are typically required for scholarships?</h4>
+        <span class="accordion-icon">+</span>
+      </div>
+      <div class="accordion-body"><div class="accordion-body-inner">
+        Most scholarships require: Aadhaar Card, Class 10/12 marksheets, Bank account details (in student's name), Income certificate from a government authority, Caste certificate (if applicable), Admission letter or fee receipt from the institution, and a recent passport-size photograph. Prepare these documents before the deadline to avoid last-minute issues.
+      </div></div>
+    </div>
+    <div class="accordion-item reveal">
+      <div class="accordion-header">
+        <h4>Can I share VidhyaDhan with students in my village or community?</h4>
+        <span class="accordion-icon">+</span>
+      </div>
+      <div class="accordion-body"><div class="accordion-body-inner">
+        Absolutely — and we encourage it! VidhyaDhan was built precisely for this purpose. Please share this website with teachers, parents, NGOs, gram panchayats, and any student who could benefit. Print pages if needed, share links, or simply walk through it with someone who needs it. Every share potentially unlocks a future.
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section style="background:var(--black-2);max-width:none;padding-left:0;padding-right:0;">
+  <div style="max-width:1280px;margin:0 auto;padding:96px 60px;">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Get in Touch</span>
+      <h2 class="section-title">Contact <span class="gold">Us</span></h2>
+      <p class="section-subtitle">Have information to contribute, a correction to suggest, or want to collaborate? We'd love to hear from you.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="contact-info-item">
+          <span class="ci-icon">📍</span>
+          <div>
+            <div class="ci-label">Based In</div>
+            <div class="ci-value">Pimpri-Chinchwad, Maharashtra, India</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <span class="ci-icon">🎯</span>
+          <div>
+            <div class="ci-label">Mission</div>
+            <div class="ci-value">Bridge the education awareness gap for every Indian student, especially those from rural and marginalized communities.</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <span class="ci-icon">🤝</span>
+          <div>
+            <div class="ci-label">Collaborate</div>
+            <div class="ci-value">NGOs, teachers, community leaders, and educational institutions are welcome to partner with us for awareness drives.</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <span class="ci-icon">🌐</span>
+          <div>
+            <div class="ci-label">SDG Initiative</div>
+            <div class="ci-value">Aligned with UN Sustainable Development Goal 4 — Quality Education for All by 2030.</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal" data-delay="150">
+        <div class="contact-form">
+          <input type="text" placeholder="Your Full Name">
+          <input type="email" placeholder="Email Address">
+          <select style="color:var(--white-faint)">
+            <option value="" disabled selected>Purpose of Inquiry</option>
+            <option>Report a broken/outdated link</option>
+            <option>Suggest a new platform/scheme</option>
+            <option>Partnership / Collaboration</option>
+            <option>General Feedback</option>
+            <option>Other</option>
+          </select>
+          <textarea placeholder="Your message…"></textarea>
+          <button class="btn btn-gold" style="width:100%;justify-content:center" onclick="alert('Thank you! Your message has been received. We will respond within 48 hours.')">Send Message ›</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="footer-logo">Vidhya<span>Dhan</span></span>
+      <p class="footer-desc">A centralized awareness platform dedicated to bridging the education knowledge gap in India. Free information, for every learner.</p>
+    </div>
+    <div class="footer-col"><h5>Explore</h5><ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="platforms.html">Platforms</a></li>
+      <li><a href="schemes.html">Schemes</a></li>
+      <li><a href="scholarships.html">Scholarships</a></li>
+    </ul></div>
+    <div class="footer-col"><h5>About</h5><ul>
+      <li><a href="#mission">Our Mission</a></li>
+      <li><a href="#sdg">SDG Goals</a></li>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul></div>
+    <div class="footer-col"><h5>Quick Links</h5><ul>
+      <li><a href="https://scholarships.gov.in" target="_blank">NSP Portal</a></li>
+      <li><a href="https://swayam.gov.in" target="_blank">SWAYAM</a></li>
+      <li><a href="https://diksha.gov.in" target="_blank">DIKSHA</a></li>
+      <li><a href="https://ndl.gov.in" target="_blank">NDL India</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 VidhyaDhan · Empowering India Through Education Awareness</p>
+    <div class="footer-sdg">
+      <span class="sdg-badge">SDG 4</span>
+      <span class="sdg-badge">SDG 10</span>
+    </div>
+  </div>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>

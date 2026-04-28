@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="VidhyaDhan is a free awareness platform connecting Indian students to free education portals, government schemes, and scholarships.">
+<meta property="og:title" content="VidhyaDhan — Free Education for Every Indian">
+<meta property="og:description" content="Discover free Indian and global education platforms, government schemes, and 100+ scholarships in one place.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#050505">
+<title>Free Platforms — VidhyaDhan</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* ─── PLATFORMS-SPECIFIC ─── */
+.tabs-wrap { }
+.tabs-bar {
+  display: flex; gap: 0; border-bottom: 1px solid rgba(201,168,76,0.15);
+  margin-bottom: 48px; overflow-x: auto;
+}
+.tab-btn {
+  padding: 14px 28px; background: none; border: none;
+  font-family: 'Rajdhani', sans-serif; font-size: 0.82rem; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--white-faint);
+  cursor: pointer; transition: color 0.3s; position: relative; white-space: nowrap;
+}
+.tab-btn::after {
+  content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 2px;
+  background: var(--gold); transform: scaleX(0); transition: transform 0.3s;
+}
+.tab-btn.active { color: var(--gold); }
+.tab-btn.active::after { transform: scaleX(1); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.platform-full-card {
+  display: grid; grid-template-columns: auto 1fr auto;
+  align-items: center; gap: 24px;
+  padding: 28px 32px; background: var(--black-3);
+  border: 1px solid rgba(201,168,76,0.08); border-radius: 4px;
+  margin-bottom: 12px; transition: border-color 0.3s, transform 0.3s;
+  text-decoration: none; color: inherit;
+}
+.platform-full-card:hover { border-color: rgba(201,168,76,0.3); transform: translateX(4px); }
+.platform-full-card .p-icon { font-size: 2.4rem; }
+.platform-full-card .p-body h3 { font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; font-weight: 700; letter-spacing: 1px; color: var(--white); margin-bottom: 6px; }
+.platform-full-card .p-body p { font-size: 1rem; color: var(--white-faint); line-height: 1.7; }
+.platform-full-card .p-meta { text-align: right; }
+.platform-full-card .p-arrow { color: var(--gold); font-size: 1.4rem; margin-top: 8px; display: block; transition: transform 0.3s; }
+.platform-full-card:hover .p-arrow { transform: translateX(4px); }
+
+.global-card {
+  padding: 32px; background: var(--black-3);
+  border: 1px solid rgba(201,168,76,0.08); border-radius: 4px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.global-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-4px); }
+.global-card .g-icon { font-size: 2rem; margin-bottom: 14px; }
+.global-card h3 { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 8px; letter-spacing: 1px; }
+.global-card p { font-size: 0.95rem; color: var(--white-faint); line-height: 1.7; margin-bottom: 16px; }
+.global-card a { color: var(--gold); font-family: 'Rajdhani', sans-serif; font-size: 0.78rem; letter-spacing: 1.5px; text-decoration: none; text-transform: uppercase; }
+.global-card a:hover { color: var(--gold-light); }
+
+.tip-box {
+  background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.15);
+  border-left: 3px solid var(--gold); border-radius: 4px;
+  padding: 20px 24px; margin: 32px 0;
+  font-size: 1rem; color: var(--white-dim); line-height: 1.8;
+}
+.tip-box strong { color: var(--gold); }
+
+@media (max-width: 600px) {
+  .platform-full-card { grid-template-columns: auto 1fr; }
+  .platform-full-card .p-meta { display: none; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">Vidhya<span>Dhan</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><a href="platforms.html" class="active">Platforms</a></li>
+    <li><a href="schemes.html">Schemes</a></li>
+    <li><a href="scholarships.html">Scholarships</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="scholarships.html" class="nav-cta">Apply Now</a></li>
+  </ul>
+  <div class="nav-toggle"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-lines"></div>
+  <span class="section-eyebrow" style="position:relative;z-index:1">Free Learning Resources</span>
+  <h1 class="page-hero-title">Education <span class="gold">Platforms</span></h1>
+  <p class="page-hero-sub">Discover 15+ free Indian and global platforms offering thousands of courses — from school to postgraduate, in multiple languages.</p>
+</div>
+
+<section>
+  <!-- Search -->
+  <div class="reveal">
+    <div class="search-wrap">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search platforms, courses, subjects…">
+      <span class="search-icon">🔍</span>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs-wrap reveal">
+    <div class="tabs-bar">
+      <button class="tab-btn active" data-tab="indian">🇮🇳 Indian Government Platforms</button>
+      <button class="tab-btn" data-tab="global">🌍 Global Free Platforms</button>
+      <button class="tab-btn" data-tab="youtube">▶ YouTube Education</button>
+    </div>
+
+    <!-- INDIAN -->
+    <div class="tab-panel active" data-panel="indian">
+      <div class="tip-box">
+        <strong>Did you know?</strong> All Indian government platforms are completely free. Most are accessible on mobile and available in multiple regional languages. No credit card or payment required — ever.
+      </div>
+
+      <a href="https://swayam.gov.in" target="_blank" class="platform-full-card" data-searchable>
+        <div class="p-icon">🎓</div>
+        <div class="p-body">
+          <h3>SWAYAM</h3>
+          <p>5,000+ free courses from IITs, IIMs, IGNOU and central universities. Covers school (9–12), undergraduate, and postgraduate levels. Optional paid certification with UGC/AICTE credit recognition.</p>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <span class="badge badge-gold">IIT · IIM · IGNOU</span>
+            <span class="badge badge-emerald">5,000+ Courses</span>
+            <span class="badge badge-sapphire">UGC Recognized</span>
+          </div>
+        </div>
+        <div class="p-meta">
+          <span class="badge badge-gold">FREE</span>
+          <span class="p-arrow">›</span>
+        </div>
+      </a>
+
+      <a href="https://diksha.gov.in" target="_blank" class="platform-full-card" data-searchable>
+        <div class="p-icon">📚</div>
+        <div class="p-body">
+          <h3>DIKSHA</h3>
+          <p>Digital Infrastructure for Knowledge Sharing. NCERT-aligned K-12 content available in 30+ Indian languages. Works offline. Trusted by over 25 crore students and teachers.</p>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <span class="badge badge-gold">K-12</span>
+            <span class="badge badge-emerald">30+ Languages</span>
+            <span class="badge badge-sapphire">Offline Available</span>
+          </div>
+        </div>
+        <div class="p-meta">
+          <span class="badge badge-gold">FREE</span>
+          <span class="p-arrow">›</span>
+        </div>
+      </a>
+
+      <a href="https://pmevidya.education.gov.in" target="_blank" class="platform-full-card" data-searchable>
+        <div class="p-icon">📡</div>
+        <div class="p-body">
+          <h3>PM e-VIDYA</h3>
+          <p>Multi-mode education initiative reaching 25 crore+ students. 34 Swayam Prabha DTH channels (no internet needed), radio classes, and podcasts. Designed for last-mile learners.</p>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <span class="badge badge-gold">34 TV Channels</span>
+            <span class="badge badge-emerald">Radio & Podcast</span>
+            <span class="badge badge-sapphire">No Internet Needed</span>
+          </div>
+        </div>
+        <div class="p-meta">
+          <span class="badge badge-gold">FREE</span>
+          <span class="p-arrow">›</span>
+        </div>
+      </a>
+
+      <a href="https://nptel.ac.in" target="_blank" class="platform-full-card" data-searchable>
+        <div class="p-icon">🔬</div>
+        <div class="p-body">
+          <h3>NPTEL</h3>
+          <p>National Programme on Technology Enhanced Learning. Free engineering, science, and management courses by IIT professors. Optional paid certification exams with high industry recognition.</p>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <span class="badge badge-gold">IIT Faculty</span>
+            <span class="badge badge-emerald">Engineering & Science</span>
+            <span class="badge badge-sapphire">Industry Recognized</span>
+          </div>
+        </div>
+        <div class="p-meta">
+          <span class="badge badge-gold">FREE</span>
+          <span class="p-arrow">›</span>
+        </div>
+      </a>
+
+      <a href="https://ndl.gov.in" target="_blank" class="platform-full-card" data-searchable>
+        <div class="p-icon">📖</div>
+        <div class="p-body">
+          <h3>National Digital Library (NDL)</h3>
+          <p>India's largest digital repository with 9+ crore learning resources — textbooks, research papers, journals, audiobooks. Covers school to research level in all disciplines.</p>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <span class="badge badge-gold">9 Crore+ Resources</span>
+            <span class="badge badge-emerald">All Disciplines</span>
+            <span class="badge badge-sapphire">Research Papers</span>
+          </div>
+        </div>
+        <div class="p-meta">
+          <span class="badge badge-gold">FREE</span>
+          <span class="p-arrow">›</span>
+        </div>
+      </a>
+
+      <a href="https://epgp.inflibnet.ac.in" target="_blank" class="platform-full-card" data-searchable>
+        <div class="p-icon">🌐</div>
+        <div class="p-body">
+          <h3>e-PG Pathshala</h3>
+          <p>Postgraduate-level e-content in 70+ disciplines developed by leading university professors and curated by UGC. Includes e-texts, self-assessments, and multimedia modules.</p>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <span class="badge badge-gold">PG Level</span>
+            <span class="badge badge-emerald">70+ Subjects</span>
+            <span class="badge badge-sapphire">UGC Curated</span>
+          </div>
+        </div>
+        <div class="p-meta">
+          <span class="badge badge-gold">FREE</span>
+          <span class="p-arrow">›</span>
+        </div>
+      </a>
+
+      <a href="https://nroer.gov.in" target="_blank" class="platform-full-card" data-searchable>
+        <div class="p-icon">📂</div>
+        <div class="p-body">
+          <h3>NROER</h3>
+          <p>National Repository of Open Educational Resources. Free textbooks, videos, interactive content aligned to NCERT for all classes. Contributes open resources globally.</p>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <span class="badge badge-gold">NCERT Aligned</span>
+            <span class="badge badge-emerald">Interactive Content</span>
+          </div>
+        </div>
+        <div class="p-meta">
+          <span class="badge badge-gold">FREE</span>
+          <span class="p-arrow">›</span>
+        </div>
+      </a>
+
+      <a href="https://igot.gov.in" target="_blank" class="platform-full-card" data-searchable>
+        <div class="p-icon">💼</div>
+        <div class="p-body">
+          <h3>iGOT Karmayogi</h3>
+          <p>Capacity building platform for citizens and government employees. Free courses in public administration, digital skills, governance, and professional development.</p>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <span class="badge badge-gold">Govt. Employees</span>
+            <span class="badge badge-emerald">Citizens Welcome</span>
+            <span class="badge badge-sapphire">Skill Building</span>
+          </div>
+        </div>
+        <div class="p-meta">
+          <span class="badge badge-gold">FREE</span>
+          <span class="p-arrow">›</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- GLOBAL -->
+    <div class="tab-panel" data-panel="global">
+      <div class="tip-box">
+        <strong>Pro Tip:</strong> Most global platforms offer free "audit" access to all course materials. Only the verified certificate costs money. You can learn everything for free — just enroll without a certificate.
+      </div>
+      <div class="grid-3" style="gap:20px">
+        <div class="global-card reveal" data-searchable>
+          <div class="g-icon">🏛️</div>
+          <h3>Coursera</h3>
+          <p>Free audit of 7,000+ courses from Harvard, Stanford, Google, Yale. Certificates available for a fee. Financial aid available for certificates too.</p>
+          <a href="https://coursera.org" target="_blank">Visit Coursera →</a>
+        </div>
+        <div class="global-card reveal" data-delay="80" data-searchable>
+          <div class="g-icon">🎓</div>
+          <h3>edX</h3>
+          <p>Free courses from MIT, Oxford, Harvard, and 160+ universities. MicroMasters and professional certificates available. Audit track is 100% free.</p>
+          <a href="https://edx.org" target="_blank">Visit edX →</a>
+        </div>
+        <div class="global-card reveal" data-delay="160" data-searchable>
+          <div class="g-icon">📐</div>
+          <h3>Khan Academy</h3>
+          <p>Completely free K-12 math, science, computing, and humanities. No ads, no fees — ever. Available in Hindi and other Indian languages.</p>
+          <a href="https://khanacademy.org" target="_blank">Visit Khan Academy →</a>
+        </div>
+        <div class="global-card reveal" data-searchable>
+          <div class="g-icon">🔧</div>
+          <h3>Google Digital Garage</h3>
+          <p>Free courses in digital marketing, AI, data analytics, and career skills. Earn Google-recognized certificates. No cost whatsoever.</p>
+          <a href="https://learndigital.withgoogle.com" target="_blank">Visit Google Garage →</a>
+        </div>
+        <div class="global-card reveal" data-delay="80" data-searchable>
+          <div class="g-icon">☁️</div>
+          <h3>Microsoft Learn</h3>
+          <p>Free courses in Azure, AI, data science, and Microsoft tools. Industry-recognized certifications. Learning paths for beginners to experts.</p>
+          <a href="https://learn.microsoft.com" target="_blank">Visit Microsoft Learn →</a>
+        </div>
+        <div class="global-card reveal" data-delay="160" data-searchable>
+          <div class="g-icon">💻</div>
+          <h3>freeCodeCamp</h3>
+          <p>100% free web development, data science, and coding curriculum with projects and certifications. Trusted by millions globally.</p>
+          <a href="https://freecodecamp.org" target="_blank">Visit freeCodeCamp →</a>
+        </div>
+        <div class="global-card reveal" data-searchable>
+          <div class="g-icon">🤖</div>
+          <h3>Google AI Essentials</h3>
+          <p>Free introductory course on AI and prompt engineering by Google. Earn a certificate. Perfect for beginners entering the AI era.</p>
+          <a href="https://grow.google/certificates/" target="_blank">Visit Google AI →</a>
+        </div>
+        <div class="global-card reveal" data-delay="80" data-searchable>
+          <div class="g-icon">🌱</div>
+          <h3>MIT OpenCourseWare</h3>
+          <p>Free lecture notes, exams, and videos from MIT's actual courses. No enrollment needed. Covers all major STEM subjects at elite university level.</p>
+          <a href="https://ocw.mit.edu" target="_blank">Visit MIT OCW →</a>
+        </div>
+        <div class="global-card reveal" data-delay="160" data-searchable>
+          <div class="g-icon">📊</div>
+          <h3>IBM SkillsBuild</h3>
+          <p>Free technology and professional skills training by IBM. Courses in AI, cybersecurity, cloud, and data. Earn IBM digital badges.</p>
+          <a href="https://skillsbuild.org" target="_blank">Visit IBM SkillsBuild →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- YOUTUBE -->
+    <div class="tab-panel" data-panel="youtube">
+      <div class="tip-box">
+        <strong>YouTube is a goldmine</strong> for free Indian education. The channels below have collectively produced thousands of hours of free content — equivalent to full coaching courses that once cost lakhs.
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Channel</th>
+            <th>Subjects Covered</th>
+            <th>Best For</th>
+            <th>Language</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-searchable>
+            <td><strong>Physics Wallah (PW)</strong></td>
+            <td>JEE, NEET, Board Exams, Class 6–12</td>
+            <td>School & Competitive Exams</td>
+            <td><span class="badge badge-gold">Hindi · English</span></td>
+          </tr>
+          <tr data-searchable>
+            <td><strong>Unacademy</strong></td>
+            <td>UPSC, JEE, NEET, Banking, CA</td>
+            <td>Competitive Exam Prep</td>
+            <td><span class="badge badge-emerald">Hindi · English</span></td>
+          </tr>
+          <tr data-searchable>
+            <td><strong>Vedantu</strong></td>
+            <td>CBSE, JEE, NEET, KVPY</td>
+            <td>Live Interactive Classes</td>
+            <td><span class="badge badge-sapphire">Hindi · English</span></td>
+          </tr>
+          <tr data-searchable>
+            <td><strong>Khan Academy India</strong></td>
+            <td>Math, Science, Humanities (K-12)</td>
+            <td>Foundation Building</td>
+            <td><span class="badge badge-gold">Hindi · Regional</span></td>
+          </tr>
+          <tr data-searchable>
+            <td><strong>NPTEL Official</strong></td>
+            <td>Engineering, Science, Management</td>
+            <td>College Students</td>
+            <td><span class="badge badge-emerald">English</span></td>
+          </tr>
+          <tr data-searchable>
+            <td><strong>CrashCourse</strong></td>
+            <td>History, Science, Literature, Psychology</td>
+            <td>Conceptual Understanding</td>
+            <td><span class="badge badge-sapphire">English</span></td>
+          </tr>
+          <tr data-searchable>
+            <td><strong>Study IQ</strong></td>
+            <td>UPSC, State PSC, SSC, Railways</td>
+            <td>Govt. Job Preparation</td>
+            <td><span class="badge badge-gold">Hindi</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="footer-logo">Vidhya<span>Dhan</span></span>
+      <p class="footer-desc">A centralized awareness platform dedicated to bridging the education knowledge gap in India.</p>
+    </div>
+    <div class="footer-col"><h5>Explore</h5><ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="platforms.html">Platforms</a></li>
+      <li><a href="schemes.html">Schemes</a></li>
+      <li><a href="scholarships.html">Scholarships</a></li>
+    </ul></div>
+    <div class="footer-col"><h5>Quick Links</h5><ul>
+      <li><a href="https://swayam.gov.in" target="_blank">SWAYAM</a></li>
+      <li><a href="https://diksha.gov.in" target="_blank">DIKSHA</a></li>
+      <li><a href="https://nptel.ac.in" target="_blank">NPTEL</a></li>
+      <li><a href="https://ndl.gov.in" target="_blank">NDL</a></li>
+    </ul></div>
+    <div class="footer-col"><h5>Connect</h5><ul>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="about.html#mission">Our Mission</a></li>
+      <li><a href="about.html#sdg">SDG Goals</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 VidhyaDhan · Knowledge is the greatest wealth</p>
+    <div class="footer-sdg"><span class="sdg-badge">SDG 4</span><span class="sdg-badge">SDG 10</span></div>
+  </div>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>
