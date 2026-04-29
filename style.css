@@ -229,7 +229,8 @@ nav.scrolled {
 }
 
 /* ══════════ TABLE ══════════ */
-.data-table { width: 100%; border-collapse: collapse; font-size: 1rem; }
+.table-responsive { width: 100%; overflow-x: auto; margin-bottom: 24px; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 1rem; min-width: 600px; }
 .data-table thead th {
   font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; font-weight: 600;
   letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
@@ -380,3 +381,21 @@ body.light-mode .card, body.light-mode .platform-full-card, body.light-mode .glo
 }
 body.light-mode .scheme-card .scheme-detail, body.light-mode #checker-results { border-top-color: rgba(0,0,0,0.08); }
 body.light-mode .accordion-header { border-bottom: 1px solid rgba(0,0,0,0.05); }
+
+/* ---------- GOOGLE TRANSLATE ---------- */
+.skiptranslate iframe { display: none !important; }
+body { top: 0 !important; }
+#google_translate_element select {
+  background: var(--black-3);
+  color: var(--white);
+  border: 1px solid rgba(201,168,76,0.5);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.85rem;
+  outline: none;
+}
+body.light-mode #google_translate_element select {
+  background: var(--black-3);
+  color: var(--white);
+}

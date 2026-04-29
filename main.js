@@ -132,6 +132,28 @@ document.addEventListener('DOMContentLoaded', () => {
       const isLight = document.body.classList.contains('light-mode');
       localStorage.setItem('theme', isLight ? 'light' : 'dark');
     });
+
+    // Language Change Option (Google Translate)
+    const translateLi = document.createElement('li');
+    translateLi.id = "google_translate_element";
+    // Adjust margin based on screen size, on desktop give it left margin
+    translateLi.style.margin = "0 8px";
+    translateLi.style.display = "flex";
+    translateLi.style.alignItems = "center";
+    navLinksList.appendChild(translateLi);
+
+    const gtScript = document.createElement('script');
+    gtScript.type = 'text/javascript';
+    gtScript.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    document.body.appendChild(gtScript);
+
+    window.googleTranslateElementInit = function() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,bn,te,mr,ta,ur,gu,kn,ml,pa', // English + major Indian languages
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    };
   }
 
 });
