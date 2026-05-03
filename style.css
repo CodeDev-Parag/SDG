@@ -3,7 +3,7 @@
    Premium Black × Gold Education Portal
 ═══════════════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap');
 
 :root {
   --gold:         #C9A84C;
@@ -33,7 +33,7 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--black);
   color: var(--white);
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
   min-height: 100vh;
 }
@@ -51,9 +51,9 @@ body::after {
 ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 2px; }
 
 /* ══════════ TYPOGRAPHY ══════════ */
-h1, h2, h3, h4 { font-family: 'Cinzel', serif; font-weight: 700; line-height: 1.2; }
-p, li, td, th { font-family: 'Cormorant Garamond', serif; }
-.label, .tag, .btn, nav a, .stat-num { font-family: 'Rajdhani', sans-serif; }
+h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; font-weight: 700; line-height: 1.2; }
+p, li, td, th { font-family: 'Poppins', sans-serif; }
+.label, .tag, .btn, nav a, .stat-num { font-family: 'Poppins', sans-serif; }
 
 /* ══════════ NAVIGATION ══════════ */
 nav {
@@ -70,13 +70,13 @@ nav.scrolled {
   backdrop-filter: blur(12px);
 }
 .nav-logo {
-  font-family: 'Cinzel', serif; font-size: 1.4rem; font-weight: 700;
+  font-family: 'Poppins', sans-serif; font-size: 1.4rem; font-weight: 700;
   color: var(--gold); text-decoration: none; letter-spacing: 3px;
 }
 .nav-logo span { color: var(--white); }
 .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
 .nav-links a {
-  font-family: 'Rajdhani', sans-serif; font-size: 0.82rem; font-weight: 500;
+  font-family: 'Poppins', sans-serif; font-size: 0.82rem; font-weight: 500;
   color: var(--white-dim); text-decoration: none; letter-spacing: 2px;
   text-transform: uppercase; position: relative; transition: color 0.3s;
   padding-bottom: 3px;
@@ -120,7 +120,7 @@ nav.scrolled {
 /* ══════════ SECTION HEADER ══════════ */
 .section-header { text-align: center; margin-bottom: 64px; }
 .section-eyebrow {
-  font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; font-weight: 600;
+  font-family: 'Poppins', sans-serif; font-size: 0.75rem; font-weight: 600;
   color: var(--gold); letter-spacing: 4px; text-transform: uppercase;
   margin-bottom: 16px; display: block;
 }
@@ -140,7 +140,7 @@ nav.scrolled {
   padding: 12px 32px; font-size: 0.82rem; font-weight: 600;
   letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
   border: none; cursor: pointer; transition: all 0.3s; border-radius: 2px;
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 .btn-gold {
   background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
@@ -185,7 +185,7 @@ nav.scrolled {
 /* ══════════ BADGE / TAG ══════════ */
 .badge {
   display: inline-block; padding: 4px 12px; border-radius: 2px;
-  font-family: 'Rajdhani', sans-serif; font-size: 0.72rem; font-weight: 600;
+  font-family: 'Poppins', sans-serif; font-size: 0.72rem; font-weight: 600;
   letter-spacing: 1.5px; text-transform: uppercase;
 }
 .badge-gold { background: rgba(201,168,76,0.12); color: var(--gold); border: 1px solid rgba(201,168,76,0.25); }
@@ -232,7 +232,7 @@ nav.scrolled {
 .table-responsive { width: 100%; overflow-x: auto; margin-bottom: 24px; }
 .data-table { width: 100%; border-collapse: collapse; font-size: 1rem; min-width: 600px; }
 .data-table thead th {
-  font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; font-weight: 600;
+  font-family: 'Poppins', sans-serif; font-size: 0.75rem; font-weight: 600;
   letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
   padding: 14px 20px; border-bottom: 1px solid rgba(201,168,76,0.3);
   text-align: left; background: var(--black-4);
@@ -241,7 +241,7 @@ nav.scrolled {
 .data-table tbody tr:hover { background: rgba(201,168,76,0.04); }
 .data-table td { padding: 16px 20px; color: var(--white-dim); vertical-align: top; line-height: 1.6; }
 .data-table td strong { color: var(--white); font-weight: 600; }
-.data-table td a { color: var(--gold); text-decoration: none; font-family: 'Rajdhani', sans-serif; font-size: 0.85rem; letter-spacing: 1px; }
+.data-table td a { color: var(--gold); text-decoration: none; font-family: 'Poppins', sans-serif; font-size: 0.85rem; letter-spacing: 1px; }
 .data-table td a:hover { color: var(--gold-light); }
 
 /* ══════════ ACCORDION ══════════ */
@@ -255,7 +255,7 @@ nav.scrolled {
   transition: background 0.3s;
 }
 .accordion-header:hover { background: var(--black-4); }
-.accordion-header h4 { font-size: 1.05rem; color: var(--white); font-family: 'Rajdhani', sans-serif; font-weight: 600; letter-spacing: 1px; }
+.accordion-header h4 { font-size: 1.05rem; color: var(--white); font-family: 'Poppins', sans-serif; font-weight: 600; letter-spacing: 1px; }
 .accordion-icon { color: var(--gold); font-size: 1.3rem; transition: transform 0.3s; flex-shrink: 0; }
 .accordion-item.open .accordion-icon { transform: rotate(45deg); }
 .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
@@ -267,7 +267,7 @@ nav.scrolled {
 .search-input {
   width: 100%; padding: 16px 52px 16px 20px;
   background: var(--black-3); border: 1px solid rgba(201,168,76,0.2);
-  color: var(--white); font-family: 'Rajdhani', sans-serif; font-size: 1rem;
+  color: var(--white); font-family: 'Poppins', sans-serif; font-size: 1rem;
   border-radius: 3px; outline: none; transition: border-color 0.3s;
   letter-spacing: 1px;
 }
@@ -288,20 +288,20 @@ footer {
 }
 .footer-brand { }
 .footer-logo {
-  font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 700;
+  font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 700;
   color: var(--gold); letter-spacing: 3px; margin-bottom: 16px; display: block;
 }
 .footer-logo span { color: var(--white); }
 .footer-desc { font-size: 1rem; color: var(--white-faint); line-height: 1.8; max-width: 280px; }
 .footer-col h5 {
-  font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; font-weight: 600;
+  font-family: 'Poppins', sans-serif; font-size: 0.75rem; font-weight: 600;
   color: var(--gold); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px;
 }
 .footer-col ul { list-style: none; }
 .footer-col ul li { margin-bottom: 10px; }
 .footer-col ul li a {
   color: var(--white-faint); text-decoration: none; font-size: 0.95rem;
-  transition: color 0.3s; font-family: 'Rajdhani', sans-serif; letter-spacing: 1px;
+  transition: color 0.3s; font-family: 'Poppins', sans-serif; letter-spacing: 1px;
 }
 .footer-col ul li a:hover { color: var(--gold); }
 .footer-bottom {
@@ -309,11 +309,11 @@ footer {
   padding-top: 28px; display: flex; align-items: center; justify-content: space-between;
   flex-wrap: wrap; gap: 12px;
 }
-.footer-copy { font-size: 0.82rem; color: var(--white-faint); font-family: 'Rajdhani', sans-serif; letter-spacing: 1px; }
+.footer-copy { font-size: 0.82rem; color: var(--white-faint); font-family: 'Poppins', sans-serif; letter-spacing: 1px; }
 .footer-sdg { display: flex; align-items: center; gap: 10px; }
 .sdg-badge {
   background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.2);
-  color: var(--gold); font-family: 'Rajdhani', sans-serif; font-size: 0.72rem;
+  color: var(--gold); font-family: 'Poppins', sans-serif; font-size: 0.72rem;
   font-weight: 600; letter-spacing: 1.5px; padding: 5px 12px; border-radius: 2px;
 }
 
@@ -400,7 +400,7 @@ body { top: 0 !important; }
   border: 1px solid rgba(201,168,76,0.5);
   border-radius: 4px;
   padding: 4px 8px;
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 0.85rem;
   outline: none;
 }

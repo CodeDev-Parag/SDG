@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const detail = card.querySelector('.scheme-detail');
       if(detail) {
         detail.insertAdjacentHTML('beforeend', `
-          <div style="margin-top:14px; padding-top:12px; border-top:1px dashed rgba(255,255,255,0.08); display:flex; justify-content:space-between; font-size:0.75rem; color:var(--white-faint); font-family:'Rajdhani', sans-serif;">
+          <div style="margin-top:14px; padding-top:12px; border-top:1px dashed rgba(255,255,255,0.08); display:flex; justify-content:space-between; font-size:0.75rem; color:var(--white-faint); font-family:'Poppins', sans-serif;">
             <span>✓ Verified: April 2026</span>
             <a href="about.html" style="color:var(--gold);text-decoration:none;">Report Update</a>
           </div>
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const rightCol = card.querySelector('.sc-right');
       if(rightCol) {
         rightCol.insertAdjacentHTML('beforeend', `
-          <div style="margin-top:14px; font-size:0.72rem; color:var(--white-faint); font-family:'Rajdhani', sans-serif;">
+          <div style="margin-top:14px; font-size:0.72rem; color:var(--white-faint); font-family:'Poppins', sans-serif;">
             <div style="margin-bottom:4px;">✓ Verified: Apr 2026</div>
             <a href="about.html" style="color:var(--gold);text-decoration:none;">Report</a>
           </div>
